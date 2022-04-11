@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.2/redux.min.js"></script>
+            </script>
+        <body>
+            <style>
+                .container {
+                    border:5px solid black;
+                    padding:10px;
+                }
+            </style>
+            <div id="red"></div>
+            <div id="green"></div>
+            <div id="blue"></div>
+            
+            <script>
+                function reducer(state, action){
+                    // 초기화를 위해 최초로 실행하는 Reducer의 호출
+                    if(state === undefined){
+
+                        // 원하는 초기값을 Return해주면 
+                        return {color: 'yellow'}
+                    }
+                }
+                // Redux의 Store에 초기값 지정
+                var store = Redux.createStore(reducer);
+                console.log(store.getState());
+
+                function red() {
+                    // Store값을 State에 지정
+                    var state = store.getState();
+
+                    // state.color → Component의 초기 Color 지정
+                    document.querySelector('#red').innerHTML = `
+                        <div class="container" id="component_red" style="background-color:${state.color}">
+                            <h1>red</h1>
+                            <input type="button" value="fire" onclick="
+                            document.querySelector('#component_red').style.backgroundColor = 'red';
+                            document.querySelector('#component_green').style.backgroundColor = 'red';
+                            document.querySelector('#component_blue').style.backgroundColor = 'red';
+                            ">
+                        </div>
+                        `;
+                }
+                red();
+
+            </script>
+        </body>
+        </head>
+    </html>
